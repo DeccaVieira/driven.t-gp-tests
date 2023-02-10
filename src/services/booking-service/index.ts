@@ -15,6 +15,7 @@ async function postBooking(userId: number, roomId: number) {
   if (!roomExists) {
     throw notFoundError;
   }
+
   const roomAvailable = await bookingRepository.findRoomAvailable(roomId);
   if (roomExists.capacity - roomAvailable.length === 0) {
     throw conflictError;
@@ -22,9 +23,26 @@ async function postBooking(userId: number, roomId: number) {
   await bookingRepository.createBooking(userId, roomId);
 }
 
+async function putBooking(userId: number, roomId: number, bookingId: number) {
+  const bookingExists = await bookingRepository.findBooking(bookingId);
+  if (!bookingExists || bookingExists.userId !== userId) {
+    throw notFoundError;
+  }
+  const roomExists = await hotelRepository.findRoom(roomId);
+  if (!roomExists) {
+    throw notFoundError;
+  }
+  const roomAvailable = await bookingRepository.findRoomAvailable(roomId);
+  if (roomExists.capacity - roomAvailable.length === 0) {
+    throw conflictError;
+  }
+  return bookingId;
+}
+
 const bookingService = {
   getBooking,
   postBooking,
+  putBooking
 };
 
 export default bookingService;
