@@ -7,13 +7,13 @@ export async function getBooking(req: AuthenticatedRequest, res: Response) {
   const { userId } = req;
 
   try {
-    const booking = await bookingService.getBooking(Number(userId));
+    const booking = await bookingService.getBookingService(Number(userId));
     return res.status(httpStatus.OK).send(booking);
   } catch (error) {
     if (error.name === 'NotFoundError') {
       return res.sendStatus(httpStatus.NOT_FOUND);
     }
-    return res.sendStatus(httpStatus.PAYMENT_REQUIRED);
+    return res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
   }
 }
 
@@ -21,27 +21,26 @@ export async function postBooking(req: AuthenticatedRequest, res: Response) {
   const { roomId } = req.body;
   const { userId } = req;
   try {
-    const booking = await bookingService.postBooking(Number(userId), Number(roomId));
+    const booking = await bookingService.postBookingService(Number(userId), Number(roomId));
     return res.status(httpStatus.OK).send(booking);
   } catch (error) {
     if (error.name === 'NotFoundError') {
       return res.sendStatus(httpStatus.NOT_FOUND);
     }
-    return res.sendStatus(httpStatus.PAYMENT_REQUIRED);
+    return res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
   }
 }
-
 export async function putBooking(req: AuthenticatedRequest, res: Response) {
   const { bookingId } = req.params;
   const { userId } = req;
   const { roomId } = req.body;
   try {
-    await bookingService.putBooking(Number(userId), Number(bookingId), Number(roomId));
+    await bookingService.putBookingService(Number(userId), Number(bookingId), Number(roomId));
     return res.status(httpStatus.OK).send(bookingId);
   } catch (error) {
     if (error.name === 'NotFoundError') {
       return res.sendStatus(httpStatus.NOT_FOUND);
     }
-    return res.sendStatus(httpStatus.PAYMENT_REQUIRED);
+    return res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
   }
 }

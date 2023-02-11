@@ -32,25 +32,14 @@ async function createBooking(userId: number, roomId: number) {
   });
 }
 
-async function ticketProcessPayment(ticketId: number) {
-  return prisma.ticket.update({
-    where: {
-      id: ticketId,
-    },
-    data: {
-      status: TicketStatus.PAID,
-    },
-  });
-}
-
 async function putBookingRepository(roomId: number, bookingId: number) {
   return prisma.booking.update({
     where: {
       id: bookingId,
     },
     data: {
-      roomId
-    }
+      roomId,
+    },
   });
 }
 
@@ -59,7 +48,7 @@ const bookingRepository = {
   findRoomAvailable,
   createBooking,
   findBookingById,
-  putBookingRepository
+  putBookingRepository,
 };
 
 export default bookingRepository;
