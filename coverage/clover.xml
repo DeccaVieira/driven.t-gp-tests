@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1676156084543" clover="3.2.0">
-  <project timestamp="1676156084544" name="All files">
-    <metrics statements="600" coveredstatements="523" conditionals="80" coveredconditionals="48" methods="99" coveredmethods="82" elements="779" coveredelements="653" complexity="0" loc="600" ncloc="600" packages="26" files="63" classes="63"/>
+<coverage generated="1676210805921" clover="3.2.0">
+  <project timestamp="1676210805922" name="All files">
+    <metrics statements="600" coveredstatements="523" conditionals="80" coveredconditionals="48" methods="100" coveredmethods="82" elements="780" coveredelements="653" complexity="0" loc="600" ncloc="600" packages="26" files="63" classes="63"/>
     <package name="src">
       <metrics statements="22" coveredstatements="16" conditionals="2" coveredconditionals="0" methods="5" coveredmethods="2"/>
       <file name="app.ts" path="/home/andreia/Documentos/drivent-main-gp/src/app.ts">
@@ -59,7 +59,7 @@
       </file>
     </package>
     <package name="src.controllers">
-      <metrics statements="153" coveredstatements="130" conditionals="17" coveredconditionals="13" methods="16" coveredmethods="14"/>
+      <metrics statements="152" coveredstatements="130" conditionals="17" coveredconditionals="13" methods="16" coveredmethods="14"/>
       <file name="authentication-controller.ts" path="/home/andreia/Documentos/drivent-main-gp/src/controllers/authentication-controller.ts">
         <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="11" type="stmt"/>
@@ -72,36 +72,35 @@
         <line num="12" count="2" type="stmt"/>
       </file>
       <file name="booking-controller.ts" path="/home/andreia/Documentos/drivent-main-gp/src/controllers/booking-controller.ts">
-        <metrics statements="29" coveredstatements="11" conditionals="3" coveredconditionals="1" methods="3" coveredmethods="1"/>
+        <metrics statements="28" coveredstatements="11" conditionals="3" coveredconditionals="1" methods="3" coveredmethods="1"/>
         <line num="3" count="11" type="stmt"/>
         <line num="4" count="11" type="stmt"/>
         <line num="6" count="11" type="stmt"/>
-        <line num="7" count="2" type="stmt"/>
-        <line num="9" count="2" type="stmt"/>
-        <line num="10" count="2" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
         <line num="13" count="1" type="cond" truecount="1" falsecount="0"/>
         <line num="14" count="1" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="20" count="11" type="stmt"/>
+        <line num="19" count="11" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="27" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="28" count="0" type="stmt"/>
-        <line num="30" count="0" type="stmt"/>
-        <line num="33" count="11" type="stmt"/>
+        <line num="26" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="32" count="11" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
         <line num="34" count="0" type="stmt"/>
         <line num="35" count="0" type="stmt"/>
         <line num="36" count="0" type="stmt"/>
         <line num="37" count="0" type="stmt"/>
         <line num="38" count="0" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="41" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="42" count="0" type="stmt"/>
-        <line num="44" count="0" type="stmt"/>
+        <line num="40" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
       </file>
       <file name="enrollments-controller.ts" path="/home/andreia/Documentos/drivent-main-gp/src/controllers/enrollments-controller.ts">
         <metrics statements="20" coveredstatements="19" conditionals="1" coveredconditionals="1" methods="3" coveredmethods="3"/>
@@ -303,16 +302,16 @@
         <line num="5" count="11" type="stmt"/>
         <line num="6" count="11" type="stmt"/>
         <line num="8" count="11" type="stmt"/>
-        <line num="9" count="68" type="stmt"/>
-        <line num="10" count="68" type="cond" truecount="1" falsecount="0"/>
-        <line num="12" count="58" type="stmt"/>
-        <line num="13" count="58" type="cond" truecount="0" falsecount="1"/>
-        <line num="15" count="58" type="stmt"/>
-        <line num="16" count="58" type="stmt"/>
-        <line num="18" count="48" type="stmt"/>
-        <line num="23" count="48" type="cond" truecount="1" falsecount="0"/>
-        <line num="25" count="38" type="stmt"/>
-        <line num="27" count="38" type="stmt"/>
+        <line num="9" count="69" type="stmt"/>
+        <line num="10" count="69" type="cond" truecount="1" falsecount="0"/>
+        <line num="12" count="59" type="stmt"/>
+        <line num="13" count="59" type="cond" truecount="0" falsecount="1"/>
+        <line num="15" count="59" type="stmt"/>
+        <line num="16" count="59" type="stmt"/>
+        <line num="18" count="49" type="stmt"/>
+        <line num="23" count="49" type="cond" truecount="1" falsecount="0"/>
+        <line num="25" count="39" type="stmt"/>
+        <line num="27" count="39" type="stmt"/>
         <line num="29" count="10" type="stmt"/>
         <line num="34" count="30" type="stmt"/>
       </file>
@@ -365,17 +364,18 @@
       </file>
     </package>
     <package name="src.repositories.booking-repository">
-      <metrics statements="8" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="1"/>
+      <metrics statements="9" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="1"/>
       <file name="index.ts" path="/home/andreia/Documentos/drivent-main-gp/src/repositories/booking-repository/index.ts">
-        <metrics statements="8" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="1"/>
+        <metrics statements="9" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="1"/>
         <line num="1" count="11" type="stmt"/>
-        <line num="4" count="2" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
-        <line num="36" count="0" type="stmt"/>
-        <line num="46" count="11" type="stmt"/>
-        <line num="54" count="11" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="56" count="11" type="stmt"/>
+        <line num="65" count="11" type="stmt"/>
       </file>
     </package>
     <package name="src.repositories.enrollment-repository">
@@ -644,10 +644,10 @@
         <line num="1" count="11" type="stmt"/>
         <line num="2" count="11" type="stmt"/>
         <line num="3" count="11" type="stmt"/>
-        <line num="6" count="2" type="stmt"/>
-        <line num="7" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="7" count="3" type="cond" truecount="1" falsecount="0"/>
         <line num="8" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
         <line num="15" count="0" type="cond" truecount="0" falsecount="1"/>
         <line num="16" count="0" type="stmt"/>
