@@ -26,7 +26,8 @@ export async function postBooking(req: AuthenticatedRequest, res: Response) {
     if (error.name === 'NotFoundError') {
       return res.sendStatus(httpStatus.NOT_FOUND);
     }
-    return res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
+    
+    return res.sendStatus(httpStatus.FORBIDDEN);
   }
 }
 export async function putBooking(req: AuthenticatedRequest, res: Response) {
@@ -35,11 +36,18 @@ export async function putBooking(req: AuthenticatedRequest, res: Response) {
   const { roomId } = req.body;
   try {
     await bookingService.putBookingService(Number(userId), Number(bookingId), Number(roomId));
-    return res.status(httpStatus.OK).send(bookingId);
+    return res.sendStatus(httpStatus.OK);
   } catch (error) {
     if (error.name === 'NotFoundError') {
       return res.sendStatus(httpStatus.NOT_FOUND);
     }
+    if(error.name === 'forbiddenError') {
+      return res.sendStatus(httpStatus.FORBIDDEN);
+    }
+    if(error.name === 'CannotListHotelsError') {
+      return res.sendStatus(httpStatus.FORBIDDEN);
+    }
+    
     return res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
   }
 }

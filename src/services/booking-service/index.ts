@@ -1,6 +1,9 @@
-import { conflictError, notFoundError } from '@/errors';
+import { conflictError, forbiddenError, notFoundError } from '@/errors';
 import bookingRepository from '@/repositories/booking-repository';
 import hotelRepository from '@/repositories/hotel-repository';
+import enrollmentRepository from '@/repositories/enrollment-repository';
+import ticketRepository from '@/repositories/ticket-repository';
+import { cannotListHotelsError } from '@/errors/cannot-list-hotels-error';
 
 async function getBookingService(userId: number) {
   const booking = await bookingRepository.findBooking(userId);
@@ -11,6 +14,16 @@ async function getBookingService(userId: number) {
 }
 
 async function postBookingService(userId: number, roomId: number) {
+  const enrollment = await enrollmentRepository.findWithAddressByUserId(userId);
+  if (!enrollment) {
+    throw notFoundError();
+  }
+
+  const ticket = await ticketRepository.findTicketByEnrollmentId(enrollment.id);
+
+  if (!ticket || ticket.status === 'RESERVED' || ticket.TicketType.isRemote || !ticket.TicketType.includesHotel) {
+    throw cannotListHotelsError();
+  }
   const roomExists = await hotelRepository.findRoom(roomId);
   if (!roomExists) {
     throw notFoundError();
@@ -24,25 +37,47 @@ async function postBookingService(userId: number, roomId: number) {
 }
 
 async function putBookingService(userId: number, roomId: number, bookingId: number) {
-  const bookingExists = await bookingRepository.findBooking(bookingId);
-  if (!bookingExists || bookingExists.userId !== userId) {
+  const enrollment = await enrollmentRepository.findWithAddressByUserId(userId);
+  if (!enrollment) {
     throw notFoundError();
   }
+
+  const ticket = await ticketRepository.findTicketByEnrollmentId(enrollment.id);
+
+  if (!ticket || ticket.status === 'RESERVED' || ticket.TicketType.isRemote || !ticket.TicketType.includesHotel) {
+    throw cannotListHotelsError();
+  }
+
+  const bookingExists = await bookingRepository.findBookingByBookingId(bookingId);
+  if (!bookingExists) {
+    //aqui
+    throw forbiddenError();
+  }
+
+  if (bookingExists.userId !== userId) {
+    throw forbiddenError();
+  }
+
   const roomExists = await hotelRepository.findRoom(roomId);
   if (!roomExists) {
-    throw notFoundError;
+    throw notFoundError();
   }
   const roomAvailable = await bookingRepository.findRoomAvailable(roomId);
   if (roomExists.capacity - roomAvailable.length === 0) {
-    throw notFoundError();
+    throw forbiddenError();
   }
-  return bookingId;
+
+  if (roomExists.Booking.length >= roomExists.capacity) {
+    throw forbiddenError();
+  }
+
+  return await bookingRepository.putBookingRepository(roomId, bookingId);
 }
 
 const bookingService = {
   getBookingService,
   postBookingService,
-  putBookingService
+  putBookingService,
 };
 
 export default bookingService;

@@ -13,6 +13,16 @@ export async function createTicketType() {
   });
 }
 
+export async function createTicketTypeWithoutHotel() {
+  return prisma.ticketType.create({
+    data: {
+      name: faker.name.findName(),
+      price: faker.datatype.number(),
+      isRemote: true,
+      includesHotel: false,
+    },
+  });
+}
 export async function createTicketTypeRemote() {
   return prisma.ticketType.create({
     data: {

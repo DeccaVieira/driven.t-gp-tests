@@ -6,3 +6,9 @@ export function notFoundError(): ApplicationError {
     message: "No result for this search!",
   };
 }
+export function forbiddenError(): ApplicationError {
+  return {
+    name: "forbiddenError",
+    message: "No result for this search!",
+  };
+}

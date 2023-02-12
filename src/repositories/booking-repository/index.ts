@@ -28,7 +28,7 @@ async function findBookingById(bookingId: number) {
 async function findRoomAvailable(roomId: number) {
   return prisma.booking.findMany({
     where: {
-      id: roomId,
+      roomId: roomId,
     },
   });
 }
