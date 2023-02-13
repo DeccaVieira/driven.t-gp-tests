@@ -27,6 +27,8 @@ async function getHotels(userId: number) {
 
 async function getHotelsWithRooms(userId: number, hotelId: number) {
   await listHotels(userId);
+  console.log(hotelId, "HI");
+  
   const hotel = await hotelRepository.findRoomsByHotelId(hotelId);
 
   if (!hotel) {

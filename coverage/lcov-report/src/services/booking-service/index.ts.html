@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">68.88% </span>
+                <span class="strong">84.44% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>31/45</span>
+                <span class='fraction'>38/45</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">68.88% </span>
+                <span class="strong">84.44% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>31/45</span>
+                <span class='fraction'>38/45</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -197,29 +197,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">11x</span>
@@ -280,29 +280,29 @@ async function putBookingService(userId: number, roomId: number, bookingId: numb
   }
 &nbsp;
   const bookingExists = await bookingRepository.findBookingByBookingId(bookingId);
-  if (!bookingExists) {
-    //aqui
+&nbsp;
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (!bookingExists) {
+<span class="cstat-no" title="statement not covered" >    throw forbiddenError();</span>
+  }
+&nbsp;
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (bookingExists.userId !== userId) {
+<span class="cstat-no" title="statement not covered" >    throw forbiddenError();</span>
+  }
+&nbsp;
+  const roomExists = await hotelRepository.findRoom(roomId);
+  if (!roomExists) {
     throw forbiddenError();
   }
-&nbsp;
-<span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (bookingExists.userId !== userId) {</span>
+  const roomAvailable = await bookingRepository.findRoomAvailable(roomId);
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (roomExists.capacity - roomAvailable.length === 0) {
 <span class="cstat-no" title="statement not covered" >    throw forbiddenError();</span>
   }
 &nbsp;
-  const roomExists = <span class="cstat-no" title="statement not covered" >await hotelRepository.findRoom(roomId);</span>
-<span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (!roomExists) {</span>
-<span class="cstat-no" title="statement not covered" >    throw notFoundError();</span>
-  }
-  const roomAvailable = <span class="cstat-no" title="statement not covered" >await bookingRepository.findRoomAvailable(roomId);</span>
-<span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (roomExists.capacity - roomAvailable.length === 0) {</span>
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (roomExists.Booking.length &gt;= roomExists.capacity) {
 <span class="cstat-no" title="statement not covered" >    throw forbiddenError();</span>
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (roomExists.Booking.length &gt;= roomExists.capacity) {</span>
-<span class="cstat-no" title="statement not covered" >    throw forbiddenError();</span>
-  }
-&nbsp;
-<span class="cstat-no" title="statement not covered" >  return await bookingRepository.putBookingRepository(roomId, bookingId);</span>
+  return await bookingRepository.putBookingRepository(roomId, bookingId);
 }
 &nbsp;
 const bookingService = {
@@ -319,7 +319,7 @@ export default bookingService;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sun Feb 12 2023 15:43:48 GMT-0300 (Horário Padrão de Brasília)
+                at Sun Feb 12 2023 22:48:44 GMT-0300 (Horário Padrão de Brasília)
             </div>
         <script src="../../../prettify.js"></script>
         <script>

@@ -269,12 +269,15 @@ describe('PUT /booking/:bookingId', () => {
       const ticket = await createTicket(enrollment.id, ticketType.id, TicketStatus.PAID);
       const payment = await createPayment(ticket.id, ticketType.price);
       const createdHotel = await createHotel();
+      console.log(createdHotel.id,"createHotel");
+      
       const createdRoom = await createRoomWithHotelId(createdHotel.id);
-      const booking = await createBookingFaker(user.id, createdRoom.id,);
-
+      console.log(createdRoom, "teste");
+      const booking = await createBookingFaker(user.id, createdRoom.id);
+      console.log(booking, "booking");
+      
       const otherHotel = await createHotel();
       const otherRoom = await createRoomWithHotelId(otherHotel.id);
-
       const response = await server
         .put(`/booking/${booking.id}`)
         .set('Authorization', `Bearer ${token}`)
@@ -284,7 +287,7 @@ describe('PUT /booking/:bookingId', () => {
     });
   });
 });
-
+// });
 //     const user = await createUser();
 //     const token = await generateValidToken(user);
 //     const enrollment = await createEnrollmentWithAddress(user);

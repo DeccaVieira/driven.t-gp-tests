@@ -49,8 +49,8 @@ async function putBookingService(userId: number, roomId: number, bookingId: numb
   }
 
   const bookingExists = await bookingRepository.findBookingByBookingId(bookingId);
+
   if (!bookingExists) {
-    //aqui
     throw forbiddenError();
   }
 
@@ -60,7 +60,7 @@ async function putBookingService(userId: number, roomId: number, bookingId: numb
 
   const roomExists = await hotelRepository.findRoom(roomId);
   if (!roomExists) {
-    throw notFoundError();
+    throw forbiddenError();
   }
   const roomAvailable = await bookingRepository.findRoomAvailable(roomId);
   if (roomExists.capacity - roomAvailable.length === 0) {
