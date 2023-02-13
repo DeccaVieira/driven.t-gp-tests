@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">84.44% </span>
+                <span class="strong">91.11% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>38/45</span>
+                <span class='fraction'>41/45</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">65% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>13/20</span>
+                <span class='fraction'>16/20</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">84.44% </span>
+                <span class="strong">91.11% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>38/45</span>
+                <span class='fraction'>41/45</span>
             </div>
         
             
@@ -162,44 +162,44 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
@@ -256,8 +256,8 @@ async function postBookingService(userId: number, roomId: number) {
     throw cannotListHotelsError();
   }
   const roomExists = await hotelRepository.findRoom(roomId);
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (!roomExists) {
-<span class="cstat-no" title="statement not covered" >    throw notFoundError();</span>
+  if (!roomExists) {
+    throw forbiddenError();
   }
 &nbsp;
   const roomAvailable = await bookingRepository.findRoomAvailable(roomId);
@@ -269,8 +269,8 @@ async function postBookingService(userId: number, roomId: number) {
 &nbsp;
 async function putBookingService(userId: number, roomId: number, bookingId: number) {
   const enrollment = await enrollmentRepository.findWithAddressByUserId(userId);
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (!enrollment) {
-<span class="cstat-no" title="statement not covered" >    throw notFoundError();</span>
+  if (!enrollment) {
+    throw notFoundError();
   }
 &nbsp;
   const ticket = await ticketRepository.findTicketByEnrollmentId(enrollment.id);
@@ -281,8 +281,8 @@ async function putBookingService(userId: number, roomId: number, bookingId: numb
 &nbsp;
   const bookingExists = await bookingRepository.findBookingByBookingId(bookingId);
 &nbsp;
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (!bookingExists) {
-<span class="cstat-no" title="statement not covered" >    throw forbiddenError();</span>
+  if (!bookingExists) {
+    throw forbiddenError();
   }
 &nbsp;
   <span class="missing-if-branch" title="if path not taken" >I</span>if (bookingExists.userId !== userId) {
@@ -319,7 +319,7 @@ export default bookingService;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sun Feb 12 2023 22:48:44 GMT-0300 (Horário Padrão de Brasília)
+                at Mon Feb 13 2023 17:17:44 GMT-0300 (Horário Padrão de Brasília)
             </div>
         <script src="../../../prettify.js"></script>
         <script>

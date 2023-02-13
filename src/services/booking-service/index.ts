@@ -26,7 +26,7 @@ async function postBookingService(userId: number, roomId: number) {
   }
   const roomExists = await hotelRepository.findRoom(roomId);
   if (!roomExists) {
-    throw notFoundError();
+    throw forbiddenError();
   }
 
   const roomAvailable = await bookingRepository.findRoomAvailable(roomId);
